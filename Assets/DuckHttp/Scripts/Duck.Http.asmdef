@@ -1,0 +1,8 @@
+{
+    "name": "Duck.Http",
+    "references": [],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}
