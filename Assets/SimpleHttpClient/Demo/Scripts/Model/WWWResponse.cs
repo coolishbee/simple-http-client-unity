@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 [Serializable]
 public class WWWResponse<T>
@@ -13,11 +14,12 @@ public class GetAllTeams_Response
 {
     public TeamList data = null;
     public int code;
-    public string msg;    
+    public string msg;
 }
 
 [Serializable]
 public class TeamList
 {
     public TeamInfo[] list = null;
+    
 }

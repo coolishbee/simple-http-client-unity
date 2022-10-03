@@ -24,10 +24,11 @@ public class Demo : MonoBehaviour
             {
                 if (info.code == 200)
                 {
-                    foreach (var item in info.data.list)
-                    {
-                        Debug.Log(item.ToString());
-                    }
+                    //foreach (var item in info.data.list)
+                    //{
+                    //    Debug.Log(item.ToString());
+                    //}
+                    Debug.Log(info.data.list);
                 }
             }
             else

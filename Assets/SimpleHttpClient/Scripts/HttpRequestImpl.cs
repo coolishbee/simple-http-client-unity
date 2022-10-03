@@ -20,6 +20,8 @@ namespace CoolishHttp
             //string requestURL = "http://httpbin.org/delay/3";
 
             UnityWebRequest request = new UnityWebRequest(requestURL, method.ToString());
+            //UnityWebRequest testReq = UnityWebRequest.Get(requestURL);
+            //UnityWebRequest postTest = UnityWebRequest.Post(requestURL, jsonBody);
 
             request.downloadHandler = new DownloadHandlerBuffer();
             if (!string.IsNullOrEmpty(jsonBody))

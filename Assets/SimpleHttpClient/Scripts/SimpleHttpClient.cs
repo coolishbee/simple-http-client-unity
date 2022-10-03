@@ -21,8 +21,8 @@ namespace CoolishHttp
         {
             await CheckNetwork();
 
-            //string requestURL = "http://localhost:8000" + url;
-            string requestURL = "http://httpbin.org/delay/3";
+            string requestURL = "http://localhost:8000" + url;
+            //string requestURL = "http://httpbin.org/delay/3";
 
             var cts = new CancellationTokenSource();
             cts.CancelAfterSlim(TimeSpan.FromSeconds(timeout));
@@ -80,7 +80,17 @@ namespace CoolishHttp
 
         public static IHttpRequest Request(string url, Method method, string jsonBody = null)
         {
-            return new HttpRequestImpl(url, method, jsonBody);
+            switch (method)
+            {
+                case Method.GET:
+                    return new HttpRequestImpl(UnityWebRequest.Get(url));
+                    //break;
+                case Method.POST:
+                    return new HttpRequestImpl(url, method, jsonBody);
+                //break;
+                default:
+                    return null;
+            }
         }
     }
 }
