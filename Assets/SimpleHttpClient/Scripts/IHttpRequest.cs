@@ -8,6 +8,7 @@ namespace CoolishHttp
         IHttpRequest OnSuccess(Action<HttpResponse> onSuccess);
         IHttpRequest OnError(Action<HttpResponse> onError);
         IHttpRequest OnNetworkError(Action<HttpResponse> onNetworkError);
+        IHttpRequest SetTimeout(int duration);
 
         UniTaskVoid Send();
     }

@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using System.Threading;
@@ -9,31 +11,33 @@ namespace CoolishHttp
 {
     public class HttpRequestImpl : IHttpRequest
     {
+        internal UnityWebRequest UnityWebRequest => unityWebRequest;
+
         private readonly UnityWebRequest unityWebRequest;
+
         private event Action<HttpResponse> onSuccess;
         private event Action<HttpResponse> onError;
         private event Action<HttpResponse> onNetworkError;
 
-        public HttpRequestImpl(string url, Method method, string jsonBody = null)
+        public HttpRequestImpl(UnityWebRequest request)
         {
-            string requestURL = "http://localhost:8000" + url;
-            //string requestURL = "http://httpbin.org/delay/3";
-
-            UnityWebRequest request = new UnityWebRequest(requestURL, method.ToString());
-            //UnityWebRequest testReq = UnityWebRequest.Get(requestURL);
-            //UnityWebRequest postTest = UnityWebRequest.Post(requestURL, jsonBody);
-
-            request.downloadHandler = new DownloadHandlerBuffer();
-            if (!string.IsNullOrEmpty(jsonBody))
-            {
-                byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonBody);
-                request.uploadHandler = new UploadHandlerRaw(bodyRaw);
-            }
-
-            request.SetRequestHeader("Content-Type", "application/json");
-            request.timeout = 3;
             unityWebRequest = request;
-        }
+            unityWebRequest.timeout = 3;
+        }        
+
+        public HttpRequestImpl(string uri, byte[] bytes, string contentType)
+        {
+            var request = new UnityWebRequest(uri, UnityWebRequest.kHttpVerbPOST)
+            {
+                uploadHandler = new UploadHandlerRaw(bytes)
+                {
+                    contentType = contentType
+                },
+                downloadHandler = new DownloadHandlerBuffer()
+            };
+            unityWebRequest = request;
+            unityWebRequest.timeout = 3;
+        }        
 
         public IHttpRequest OnSuccess(Action<HttpResponse> onSuccess)
         {
@@ -50,6 +54,12 @@ namespace CoolishHttp
         public IHttpRequest OnNetworkError(Action<HttpResponse> onNetworkError)
         {
             this.onNetworkError += onNetworkError;
+            return this;
+        }
+
+        public IHttpRequest SetTimeout(int duration)
+        {
+            unityWebRequest.timeout = duration;
             return this;
         }
 
@@ -82,9 +92,14 @@ namespace CoolishHttp
                 else if(response.IsHttpError)
                 {
                     onError?.Invoke(response);
-                }                
+                }
                 Debug.Log(e.Message);
-            }            
+            }
+
+            if (unityWebRequest != null)
+            {
+                unityWebRequest.Dispose();
+            }
         }
 
         private HttpResponse CreateResponse(UnityWebRequest unityWebRequest)
