@@ -8,7 +8,5 @@
     "keywords": [ "async/await", "async", "Task", "UniTask", "httpclient", "restapi" ],
     "license": "MIT",
     "category": "Task",
-    "dependencies": {        
-        "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask"
-    }
+    "dependencies": {}
 }
