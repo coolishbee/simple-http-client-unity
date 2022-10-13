@@ -7,6 +7,12 @@
       "dependencies": {},
       "hash": "f48cb4b03e6214d9a02cedfda6f26635dad001fb"
     },
+    "com.unity.asset-store-tools": {
+      "version": "file:com.unity.asset-store-tools",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.unity.collab-proxy": {
       "version": "1.17.2",
       "depth": 0,

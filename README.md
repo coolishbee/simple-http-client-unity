@@ -7,14 +7,9 @@ Provide efficient HttpClient functions using UniTask in Unity.
 * using [UniTask](https://github.com/Cysharp/UniTask)
 * Success, error and network error events
 
-## UPM Package
-### Install via git URL
+## Installation
 
-**step 1.** Add [UniTask](https://github.com/Cysharp/UniTask#install-via-git-url) package
-
-**step 2.** Add SimpleHttpClient Package:
-
-Package Manager > Add package from git URL > Add `https://github.com/coolishbee/simple-http-client-unity.git`
+* import it from [Asset Store]()
 
 ## Project Tree
 

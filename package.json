@@ -8,5 +8,5 @@
     "keywords": [ "async/await", "async", "Task", "UniTask", "httpclient", "restapi" ],
     "license": "MIT",
     "category": "Task",
-    "dependencies": {}
+    "dependencies": {}    
 }
