@@ -14,6 +14,7 @@ namespace CoolishHttp
         internal UnityWebRequest UnityWebRequest => unityWebRequest;
 
         private readonly UnityWebRequest unityWebRequest;
+        private readonly Dictionary<string, string> headers;
 
         private event Action<HttpResponse> onSuccess;
         private event Action<HttpResponse> onError;
@@ -23,6 +24,7 @@ namespace CoolishHttp
         {
             unityWebRequest = request;
             unityWebRequest.timeout = 3;
+            headers = new Dictionary<string, string>();
         }        
 
         public HttpRequestImpl(string uri, byte[] bytes, string contentType)
@@ -37,6 +39,7 @@ namespace CoolishHttp
             };
             unityWebRequest = request;
             unityWebRequest.timeout = 3;
+            headers = new Dictionary<string, string>();
         }        
 
         public IHttpRequest OnSuccess(Action<HttpResponse> onSuccess)
@@ -63,25 +66,34 @@ namespace CoolishHttp
             return this;
         }
 
+        public IHttpRequest SetHeader(string key, string value)
+        {
+            headers.Add(key, value);
+            return this;
+        }
+
+        public IHttpRequest SetHeaders(IEnumerable<KeyValuePair<string, string>> headers)
+        {
+            foreach(var item in headers)
+            {
+                SetHeader(item.Key, item.Value);
+            }
+            return this;
+        }
+
         public async UniTaskVoid Send()
         {
-            //var cts = new CancellationTokenSource();
-            //cts.CancelAfterSlim(TimeSpan.FromSeconds(3));            
-
             try
             {
+                foreach(var header in headers)
+                {
+                    unityWebRequest.SetRequestHeader(header.Key, header.Value);
+                }
+
                 await unityWebRequest.SendWebRequest();
                 var response = CreateResponse(unityWebRequest);                
                 onSuccess?.Invoke(response);
-            }
-            //catch (OperationCanceledException ex)
-            //{
-            //    if (ex.CancellationToken == cts.Token)
-            //    {
-            //        var response = CreateResponse(unityWebRequest);
-            //        onNetworkError?.Invoke(response);
-            //    }
-            //}
+            }            
             catch (Exception e)
             {
                 var response = CreateResponse(unityWebRequest);

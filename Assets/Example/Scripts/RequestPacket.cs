@@ -1,11 +1,11 @@
 using System;
 using UnityEngine;
 
-namespace CoolishDemo.WWWRequest
+namespace Example.RequestPacket
 {
     [Serializable]
     public class TeamInfo_Req
-    {        
+    {
         public string team_name;
         public string manager_name;
         public string formation;

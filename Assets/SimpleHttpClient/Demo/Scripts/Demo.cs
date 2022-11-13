@@ -1,58 +1,32 @@
 using UnityEngine;
-using UnityEngine.UI;
-using CoolishHttp;
-using CoolishDemo.WWWRequest;
+using CoolishDemo;
 using CoolishDemo.WWWResponse;
 
 public class Demo : MonoBehaviour
 {
-    public HttpManager httpManager;
+    public HttpManager httpManager;    
 
-    void Start()
-    {
-    }
-
-    public void OnClickGet()
+    public void OnClickGet1()
     {        
-        //string requestURL = "http://localhost:8000" + "/api/teamlist";
-
-        //var req = SimpleHttpClient.Get(requestURL)
-        //    .OnSuccess(res => Debug.Log(res.Text))
-        //    .OnError(err => Debug.LogWarning(err.Error))
-        //    .OnNetworkError(netErr => Debug.LogError(netErr.Error))
-        //    .Send();
-
-        //httpManager.GetAllTeamsSendPacket(success =>
-        //{
-        //    Debug.Log(success.code);
-        //    Debug.Log(success.msg);
-        //    foreach (var item in success.data.list)
-        //    {
-        //        Debug.Log(item.ToString());
-        //    }
-        //});
-
-        httpManager.SendPacket<GetAllTeams_Res>(ePacketType.GetAllTeams, res =>
-        {
-            Debug.Log(res.code);
-            Debug.Log(res.msg);
-            foreach (var item in res.data.list)
-            {
-                Debug.Log(item.ToString());
-            }
+        httpManager.SendPacket<GetPosts_Res>(ePacketType.GetPosts, res =>
+        {            
+            Debug.Log(JsonHelper.ArrayToJsonString<Post>(res.Items, true));
         });
     }
 
-    public void OnClickPost()
-    {        
-        var team = new TeamInfo_Req("Chelsea", "Graham Potter", "3:4:2:1");
-        
-        string requestURL = "http://localhost:8000" + "/api/team";
+    public void OnClickGet2()
+    {
+        httpManager.SendPacket<GetTodos_Res>(ePacketType.GetPosts, res =>
+        {
+            Debug.Log(JsonHelper.ArrayToJsonString<Todo>(res.Items, true));
+        });        
+    }
 
-        var req = SimpleHttpClient.PostJson(requestURL, JsonUtility.ToJson(team))
-            .OnSuccess(res => Debug.Log(res.Text))
-            .OnError(err => Debug.Log(err.Error))
-            .OnNetworkError(netErr => Debug.LogError(netErr.Error))
-            .Send();
-    }    
+    public void OnClickPost()
+    {
+        httpManager.SendPacket<Post>(ePacketType.PostPosts, res =>
+        {
+            Debug.Log(JsonUtility.ToJson(res, true));
+        });
+    }
 }

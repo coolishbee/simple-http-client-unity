@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3709941, g: 0.3785282, b: 0.35739636, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311915, g: 0.3807396, b: 0.35872662, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -341,7 +341,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: GET
+  m_Text: GET2
 --- !u!222 &615081896
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -421,7 +421,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: GET1
 --- !u!222 &687778366
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -650,7 +650,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1656765763}
         m_TargetAssemblyTypeName: Demo, Assembly-CSharp
-        m_MethodName: OnClickGet
+        m_MethodName: OnClickGet2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -974,7 +974,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2046112283}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1656765763}
+        m_TargetAssemblyTypeName: Demo, Assembly-CSharp
+        m_MethodName: OnClickGet1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2046112283
 MonoBehaviour:
   m_ObjectHideFlags: 0
