@@ -24,6 +24,11 @@ namespace CoolishDemo.WWWResponse
         public User[] Items = null;
     }
 
-
+    [Serializable]
+    public class GetPhotos_Res
+    {
+        [SerializeField]
+        public Photo[] results = null;
+    }
     
 }

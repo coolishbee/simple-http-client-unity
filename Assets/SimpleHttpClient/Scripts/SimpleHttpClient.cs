@@ -59,7 +59,5 @@ namespace CoolishHttp
         {
             return new HttpRequestImpl(UnityWebRequest.Head(uri));
         }
-
-
     }
 }

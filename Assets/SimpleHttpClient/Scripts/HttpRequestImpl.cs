@@ -125,7 +125,9 @@ namespace CoolishHttp
                 IsHttpError = unityWebRequest.result == UnityWebRequest.Result.ProtocolError,
                 IsNetworkError = unityWebRequest.result == UnityWebRequest.Result.ConnectionError,
                 Error = unityWebRequest.error,
-                StatusCode = unityWebRequest.responseCode
+                StatusCode = unityWebRequest.responseCode,
+                ResponseHeaders = unityWebRequest.GetResponseHeaders(),
+                Texture = (unityWebRequest.downloadHandler as DownloadHandlerTexture)?.texture
             };
         }
     }

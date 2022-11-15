@@ -17,7 +17,7 @@ public class Demo : MonoBehaviour
     public void OnClickGet2()
     {
         httpManager.SendPacket<GetTodos_Res>(ePacketType.GetPosts, res =>
-        {
+        {            
             Debug.Log(JsonHelper.ArrayToJsonString<Todo>(res.Items, true));
         });        
     }
