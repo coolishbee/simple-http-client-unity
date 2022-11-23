@@ -12,7 +12,9 @@ namespace CoolishHttp
         IHttpRequest SetTimeout(int duration);
         IHttpRequest SetHeader(string key, string value);
         IHttpRequest SetHeaders(IEnumerable<KeyValuePair<string, string>> headers);
-
+        IHttpRequest SetRedirectLimit(int redirectLimit);
+        bool RemoveHeader(string key);
         UniTaskVoid Send();
+        void Abort();
     }
 }

@@ -85,7 +85,7 @@ public class HttpManager : MonoBehaviour
             userId = 1
         };
 
-        string requestURL = "https://jsonplaceholder.typicode.com" + "/posts";
+        string requestURL = basePath + "/posts";
 
         var req = SimpleHttpClient.PostJson(requestURL, JsonUtility.ToJson(postBody))
             .OnSuccess(res =>

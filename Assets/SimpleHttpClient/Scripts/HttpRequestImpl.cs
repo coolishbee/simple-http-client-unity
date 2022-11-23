@@ -11,8 +11,6 @@ namespace CoolishHttp
 {
     public class HttpRequestImpl : IHttpRequest
     {
-        internal UnityWebRequest UnityWebRequest => unityWebRequest;
-
         private readonly UnityWebRequest unityWebRequest;
         private readonly Dictionary<string, string> headers;
 
@@ -79,6 +77,22 @@ namespace CoolishHttp
                 SetHeader(item.Key, item.Value);
             }
             return this;
+        }
+
+        public bool RemoveHeader(string key)
+        {
+            return headers.Remove(key);
+        }
+
+        public IHttpRequest SetRedirectLimit(int redirectLimit)
+        {
+            unityWebRequest.redirectLimit = redirectLimit;
+            return this;
+        }
+
+        public void Abort()
+        {
+            unityWebRequest.Abort();
         }
 
         public async UniTaskVoid Send()

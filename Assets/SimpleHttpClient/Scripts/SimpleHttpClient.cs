@@ -32,9 +32,21 @@ namespace CoolishHttp
             return new HttpRequestImpl(UnityWebRequest.Post(uri, multipartForms));
         }
 
-        public static IHttpRequest PostJson(string uri, string json)
+        public static IHttpRequest Post(string uri, byte[] bytes, string contentType)
         {
-            Debug.Log(json);
+            var unityWebRequest = new UnityWebRequest(uri, UnityWebRequest.kHttpVerbPOST)
+            {
+                uploadHandler = new UploadHandlerRaw(bytes)
+                {
+                    contentType = contentType
+                },
+                downloadHandler = new DownloadHandlerBuffer()
+            };
+            return new HttpRequestImpl(unityWebRequest);
+        }
+
+        public static IHttpRequest PostJson(string uri, string json)
+        {            
             return new HttpRequestImpl(uri,
                                        Encoding.UTF8.GetBytes(json),
                                        "application/json");
