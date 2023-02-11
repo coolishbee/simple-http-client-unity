@@ -13,8 +13,8 @@ Provide efficient HttpClient functions using UniTask in Unity.
 ## Installation
 
 1. You can add [UniTask](https://github.com/Cysharp/UniTask#upm-package) to Package Manager
-2. unitypackage download
-3. import unitypackage
+2. [unihttpclient.unitypackage](https://github.com/coolishbee/simple-http-client-unity/blob/main/unihttpclient.unitypackage) download
+3. import [unihttpclient.unitypackage](https://github.com/coolishbee/simple-http-client-unity/blob/main/unihttpclient.unitypackage)
 
 ## Example
 ### GET Example
