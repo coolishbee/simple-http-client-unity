@@ -5,47 +5,16 @@ Provide efficient HttpClient functions using UniTask in Unity.
 ## Features
 
 * using [UniTask](https://github.com/Cysharp/UniTask)
+* using UnityWebRequest, UnityWebRequestTexture
 * Success, error and network error events
+* GET, POST, PUT, DELETE, HEAD
+* Provide various examples
 
 ## Installation
 
-* import it from [Asset Store]()
-
-## Project Tree
-
-```
-.
-├── SimpleHttpClient
-│   ├── Demo
-│   │   ├── Scene
-│   │   │   ├── Demo.unity
-│   │   │   └── Demo.unity.meta
-│   │   ├── Scene.meta
-│   │   ├── Scripts
-│   │   │   ├── Demo.cs
-│   │   │   ├── Demo.cs.meta
-│   │   │   ├── HttpManager.cs
-│   │   │   ├── HttpManager.cs.meta
-│   │   │   ├── Model
-│   │   │   │   ├── WWWRequest.cs
-│   │   │   │   ├── WWWRequest.cs.meta
-│   │   │   │   ├── WWWResponse.cs
-│   │   │   │   └── WWWResponse.cs.meta
-│   │   │   └── Model.meta
-│   │   └── Scripts.meta
-│   ├── Demo.meta
-│   ├── Scripts
-│   │   ├── HttpRequestImpl.cs
-│   │   ├── HttpRequestImpl.cs.meta
-│   │   ├── HttpResponse.cs
-│   │   ├── HttpResponse.cs.meta
-│   │   ├── IHttpRequest.cs
-│   │   ├── IHttpRequest.cs.meta
-│   │   ├── SimpleHttpClient.cs
-│   │   └── SimpleHttpClient.cs.meta
-│   └── Scripts.meta
-└── SimpleHttpClient.meta
-```
+1. You can add [UniTask](https://github.com/Cysharp/UniTask#upm-package) to Package Manager
+2. unitypackage download
+3. import unitypackage
 
 ## Example
 ### GET Example
@@ -74,77 +43,23 @@ var req = SimpleHttpClient.PostJson(requestURL, JsonUtility.ToJson(team))
     .Send();
 ```
 
-### Custom HttpManager Sample
+### POSTFormData Example
 
 ```c#
-public enum ePacketType
-{
-    GetAllTeams,
-}
+string requestURL = basePath + "/posts";
 
-public class HttpManager : MonoBehaviour
-{
-    //example.1
-    public void SendPacket<T>(ePacketType packetType, Action<T> action)
+WWWForm form = new WWWForm();
+form.AddField("player", "son");
+form.AddField("number", "7");
+form.AddField("team", "Tottenham");
+form.AddField("country", "Korea Republic");
+
+var req = SimpleHttpClient.Post(requestURL, form)
+    .OnSuccess(res =>
     {
-        switch (packetType)
-        {
-            case ePacketType.GetAllTeams: GetAllTeams(action); break;
-        }
-    }
-
-    private void GetAllTeams<T>(Action<T> action)
-    {
-        string requestURL = "http://localhost:8000" + "/api/teamlist";
-
-        var req = SimpleHttpClient.Get(requestURL)
-            .OnSuccess(res =>
-            {
-                T data = JsonUtility.FromJson<T>(res.Text);
-                action.Invoke(data);
-            })
-            .OnError(err => Debug.LogWarning(err.Error))
-            .OnNetworkError(netErr => Debug.LogError(netErr.Error))
-            .Send();
-    }
-
-    //example.2
-    public void GetAllTeamsSendPacket(Action<GetAllTeams_Res> action)
-    {
-        string requestURL = "http://localhost:8000" + "/api/teamlist";
-        //string requestURL = "http://httpbin.org/delay/3"; //timeout test
-
-        var req = SimpleHttpClient.Get(requestURL)
-            .OnSuccess(res =>
-            {
-                var data = JsonUtility.FromJson<GetAllTeams_Res>(res.Text);
-                action.Invoke(data);
-            })
-            .OnError(err => Debug.LogWarning(err.Error))
-            .OnNetworkError(netErr => Debug.LogError(netErr.Error))
-            .Send();
-    }    
-}
-
-//usage
-//ex1
-httpManager.SendPacket<GetAllTeams_Res>(ePacketType.GetAllTeams, res =>
-{
-    Debug.Log(res.code);
-    Debug.Log(res.msg);
-    foreach (var item in res.data.list)
-    {
-        Debug.Log(item.ToString());
-    }
-});
-//ex2
-httpManager.GetAllTeamsSendPacket(success =>
-{
-   Debug.Log(success.code);
-   Debug.Log(success.msg);
-   foreach (var item in success.data.list)
-   {
-       Debug.Log(item.ToString());
-   }
-});
+        responseText.text = res.Text;
+    })
+    .OnError(err => Debug.LogWarning(err.Error))
+    .OnNetworkError(netErr => Debug.LogError(netErr.Error))
+    .Send();
 ```

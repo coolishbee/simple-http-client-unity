@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3709941, g: 0.3785282, b: 0.35739636, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311915, g: 0.3807396, b: 0.35872662, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1411,7 +1411,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 388981103}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.1525
+  m_Size: 0.1325
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2203,6 +2203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basePath: https://jsonplaceholder.typicode.com
+  timeoutPath: http://httpbin.org/delay/3
   httpManager: {fileID: 362512092}
   responseText: {fileID: 2111301763}
 --- !u!1 &1965818966
