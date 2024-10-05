@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using CoolishHttp;
 using CoolishDemo.WWWResponse;
 using CoolishDemo;
-using Cysharp.Threading.Tasks;
 
 public class Gallery : MonoBehaviour
 {
@@ -30,7 +29,7 @@ public class Gallery : MonoBehaviour
         string requestURL = $"https://api.unsplash.com/search/photos?query={term}";
 
         var req = SimpleHttpClient.Get(requestURL)
-            .SetHeader("Authorization", "Client-ID S2F1QMER5i40nOj6vV_JUrGfK7e2l7Ue0f_MLUX5STQ")
+            .AddHeader("Authorization", "Client-ID S2F1QMER5i40nOj6vV_JUrGfK7e2l7Ue0f_MLUX5STQ")
             .OnSuccess(res => {                
                 var data = JsonUtility.FromJson<GetPhotos_Res>(res.Text);
                 foreach(Photo item in data.results)

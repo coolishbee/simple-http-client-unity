@@ -77,6 +77,12 @@ public class HttpManager : MonoBehaviour
             .Send();
     }
 
+    public IHttpRequest GetUser()
+    {
+        string requestURL = basePath + "/users";
+        return SimpleHttpClient.Get(requestURL);
+    }
+
     private void PostPosts<T>(Action<T> action)
     {
         var postBody = new Post {
@@ -113,5 +119,5 @@ public class HttpManager : MonoBehaviour
             .OnError(err => Debug.LogWarning(err.Error))
             .OnNetworkError(netErr => Debug.LogError(netErr.Error))            
             .Send();
-    }    
+    }
 }

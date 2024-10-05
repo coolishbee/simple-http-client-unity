@@ -64,7 +64,7 @@ namespace CoolishHttp
             return this;
         }
 
-        public IHttpRequest SetHeader(string key, string value)
+        public IHttpRequest AddHeader(string key, string value)
         {
             headers.Add(key, value);
             return this;
@@ -74,7 +74,7 @@ namespace CoolishHttp
         {
             foreach(var item in headers)
             {
-                SetHeader(item.Key, item.Value);
+                AddHeader(item.Key, item.Value);
             }
             return this;
         }

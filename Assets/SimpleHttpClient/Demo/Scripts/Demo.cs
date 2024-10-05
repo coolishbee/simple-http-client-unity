@@ -35,6 +35,11 @@ public class Demo : MonoBehaviour
         {
             responseText.text = JsonHelper.ArrayToJsonString<User>(res.Items, true);
         });
+
+        //httpManager.GetUser()
+        //    .OnSuccess(res => { responseText.text = res.Text; })
+        //    .OnError(err => { Debug.LogWarning(err.Error); })
+        //    .Send();
     }
 
     public void OnClickPostPosts()
@@ -65,7 +70,7 @@ public class Demo : MonoBehaviour
 
     public void OnClickGetTimeout()
     {
-        var req = SimpleHttpClient.Get(timeoutPath)
+        var req = SimpleHttpClient.Get(timeoutPath)            
             .OnSuccess(res => Debug.Log(res.Text))
             .OnError(err => Debug.LogWarning(err.Error))
             .OnNetworkError(netErr => {
