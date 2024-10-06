@@ -34,12 +34,7 @@ public class Demo : MonoBehaviour
         httpManager.SendPacket<GetUsers_Res>(ePacketType.GetUsers, res =>
         {
             responseText.text = JsonHelper.ArrayToJsonString<User>(res.Items, true);
-        });
-
-        //httpManager.GetUser()
-        //    .OnSuccess(res => { responseText.text = res.Text; })
-        //    .OnError(err => { Debug.LogWarning(err.Error); })
-        //    .Send();
+        });        
     }
 
     public void OnClickPostPosts()

@@ -59,7 +59,7 @@ namespace CoolishHttp
 
         public static IHttpRequest Put(string uri, string bodyData)
         {
-            return new HttpRequestImpl(UnityWebRequest.Post(uri, bodyData));
+            return new HttpRequestImpl(UnityWebRequest.PostWwwForm(uri, bodyData));
         }
 
         public static IHttpRequest Delete(string uri)

@@ -1,0 +1,25 @@
+{
+  "name": "com.coolishbee.http-client",
+  "displayName": "Simple Http Client",
+  "version": "1.0.1",
+  "unity": "2019.4",
+  "author": {
+      "name": "James Cheon",
+      "email": "chc3484@gmail.com",
+      "url": "https://github.com/coolishbee"
+  },
+  "description": "Provide efficient HttpClient functions using UniTask in Unity.",
+  "type": "library",
+  "samples": [
+    {
+      "displayName": "Demo",
+      "description": "Demos to help users get started using the Simple Http Client",
+      "path": "Samples/Demo"
+    }
+  ],
+  "dependencies": {
+    "com.cysharp.unitask": "2.5.10",
+    "com.unity.modules.jsonserialize": "1.0.0",
+    "com.unity.ugui": "1.0.0"
+  }
+}
