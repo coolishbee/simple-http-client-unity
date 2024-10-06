@@ -19,11 +19,13 @@ Provide efficient HttpClient functions using UniTask in Unity.
 
 There are 4 ways to install this plugin:
 
-- import UniHttpClient.unitypackage via Assets-Import Package
+- import [UniHttpClient.unitypackage](https://github.com/coolishbee/simple-http-client-unity/releases/download/v1.0.1/UniHttpClient.unitypackage) via Assets-Import Package
 - (via Package Manager) add the following line to Packages/manifest.json:
     + `"com.coolishbee.http-client":` `"https://github.com/coolishbee/simple-http-client-unity.git",`
 - (via OpenUPM) after installing openupm-cli, run the following command:
     + `openupm add com.coolishbee.http-client`
+
+![upm](img/upm01.png)
 
 ## Example
 ### GET Example
