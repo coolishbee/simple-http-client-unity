@@ -1,0 +1,17 @@
+{
+    "name": "SimpleHttpClient.Samples",
+    "rootNamespace": "",
+    "references": [
+        "GUID:8be4313bc44c244c1860d19e16980708",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
